@@ -7,11 +7,11 @@ This is meant to provide a simple example of using Auth0 to secure an API.
 
 It has very few requirements, listed in the `requirements.txt`. To install them use `pip install -r requirements.txt`.
 
-`python app.py` will start an HTTP server at http://localhost:5000. Visit this page to log in.
+`python app.py` will start an HTTP server at [http://localhost:5000](http://localhost:5000). Visit this page to log in.
 
 ## Using environment variables
 
-To use you own Auth0 account you must provide a Client ID, Client Secret, and the host used to authenticate against. This can be done by providing environment variables when running the server.
+To use your own Auth0 account you must provide a Client ID, Client Secret, and the host used to authenticate against. This can be done by providing environment variables when running the server.
 
     
     CLIENT_ID=7PyT5eQRRdaSxgM4hEYz04wzncNiXpqH \
