@@ -41,6 +41,10 @@ when combined with `SCOPE`.
 The second template, `templates/key.html` shows the resulting signed `id_token` that has a life span configurable using
 the Auth0 administration panel. It attempts to make to the requests to the `/protected` endpoint every second and renders the response. A logout button is provided.
 
+## Auth0 Configuration
+
+The settings for this application can be seen [here](https://github.com/david4096/flask-auth0-example/issues/1).
+
 ## Notes
 
 Web tokens are signed JSON that can be used to guarantee identity, however, a server is required to maintain it's own state regarding logins. Different APIs manage their keys differently, offering TTL, changes in authorization level, etc.
