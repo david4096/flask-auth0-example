@@ -1,0 +1,68 @@
+<html>
+<head>
+  <title>Get your Key</title></head><body><div>
+      <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+<div>
+  Your API key
+</div>
+<div>
+  <textarea rows=5 cols=100 id="key">{{ key }}</textarea>
+</div>
+<div>
+  Server response
+</div>
+<div>
+  <textarea id="message" rows=5 cols=100></textarea>
+</div>
+<div>
+  Logged in? <input type="checkbox" id="logged_in" disabled> <button onclick="logout()" style="font-size:18pt">Logout</button><a href="/login">Login</a>
+</div>
+<div>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/7/77/Martian_face_viking_cropped.jpg" id="profile" style="width: 100px"/>
+</div>
+<div id="email"></span>
+<script>
+function logout() {
+  $.ajax({
+      url: '/logout',
+      beforeSend : function(xhr) {
+        xhr.setRequestHeader("Authorization", "Bearer {{ key }}");
+      },
+      error : function(err, data) {
+        $('#key').html('');
+        $('#message').html(JSON.stringify(err));
+      },
+      success: function(data) {
+        $('#key').html('');
+        $('#logged_in').attr('checked', false);
+        $("#profile").attr('src', 'https://upload.wikimedia.org/wikipedia/commons/7/77/Martian_face_viking_cropped.jpg');
+        $('#message').html(data);
+      }
+  });
+}
+
+$(document).ready(function() {
+  setInterval(function(){
+    $.ajax({
+        url: '/protected',
+        beforeSend : function(xhr) {
+          xhr.setRequestHeader("Authorization", "Bearer {{ key }}");
+        },
+        error : function(err) {
+          $('#message').html(JSON.stringify(err));
+          $('#logged_in').attr('checked', false);
+          $("#profile").attr('src', 'https://upload.wikimedia.org/wikipedia/commons/7/77/Martian_face_viking_cropped.jpg');
+          $("#email").html("");
+        },
+        success: function(data) {
+          $('#logged_in').attr('checked', 'checked');
+          $("#profile").attr('src', data.picture);
+          $("#email").html(data.email);
+          $('#message').html(JSON.stringify(data));
+        }
+    });
+  }, 1000)
+
+});
+     
+</script>
