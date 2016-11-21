@@ -4,7 +4,7 @@
   <title>Log in</title></head><body><div>
     <script src="https://cdn.auth0.com/js/lock/10.0/lock.min.js"></script>
     <script type="text/javascript">
-      var lock = new Auth0Lock('{{ app.config.get('CLIENT_ID') }}', '{{ app.config.get('DOMAIN') }}', {
+      var lock = new Auth0Lock('{{ app.config.get('CLIENT_ID') }}', '{{ app.config.get('AUTH_HOST') }}', {
         auth: {
           redirectUrl: '{{ app.config.get('CALLBACK_URL') }}',
           responseType: 'code',
